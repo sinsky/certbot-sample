@@ -5,6 +5,7 @@
   Clone this repository.
   ```shell
   git clone https://github.com/sinsky/certbot-sample
+  cd certbot-sample
   ```
 
 2. Create credential file
@@ -23,7 +24,16 @@
   
   > See https://github.com/aaomidi/certbot-dns-google-domains#credentials for details.
 
-4. Run docker command
+4. Copy and Update .env
+
+  Copy and update .env file as follows.
+  ```shell
+  cp .env.example .env
+  ```
+  Rewrite it to a domain and email you own.
+  
+
+6. Run docker command
 
   Run the following command.
   ``` shell
