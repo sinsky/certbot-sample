@@ -1,0 +1,15 @@
+services:
+  certbot:
+    image: ghcr.io/aaomidi/certbot-dns-google-domains:latest
+    volumes:
+      - /var/lib/letsencrypt:/var/lib/letsencrypt
+      - /etc/letsencrypt:/etc/letsencrypt
+    command: > 
+      sh -c "certbot certonly --authenticator dns-google-domains 
+      --dns-google-domains-credentials /var/lib/letsencrypt/dns_google_domains_credentials.ini 
+      --server https://acme-v02.api.letsencrypt.org/directory --non-interactive 
+      --dns-google-domains-zone ${DOMAIN_ZONE} -d $(echo ${DOMAINS} | sed -e 's/,/ -d /g') 
+      -m ${EMAIL} --agree-tos --no-eff-email"
+    cap_drop:
+      - all
+ 
